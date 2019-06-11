@@ -1,5 +1,6 @@
 package com.itheima.mybatis.utils;
 
+import com.itheima.mybatis.annotation.Select;
 import com.itheima.mybatis.cfg.Configuration;
 import com.itheima.mybatis.cfg.Mapper;
 import com.itheima.mybatis.io.Resources;
@@ -10,6 +11,9 @@ import org.dom4j.io.SAXReader;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,14 +91,14 @@ public class XMLConfigBuilder {
                     //给configuration中的mappers赋值
                     cfg.setMappers(mappers);
                 }else{
-                  /*  System.out.println("使用的是注解");
+                    System.out.println("使用的是注解");
                     //表示没有resource属性，用的是注解
                     //获取class属性的值
                     String daoClassPath = mapperElement.attributeValue("class");
                     //根据daoClassPath获取封装的必要信息
                     Map<String,Mapper> mappers = loadMapperAnnotation(daoClassPath);
                     //给configuration中的mappers赋值
-                    cfg.setMappers(mappers);*/
+                    cfg.setMappers(mappers);
                 }
             }
             //返回Configuration
@@ -164,7 +168,7 @@ public class XMLConfigBuilder {
      * @param daoClassPath
      * @return
      */
-  /*  private static Map<String,Mapper> loadMapperAnnotation(String daoClassPath)throws Exception{
+      private static Map<String,Mapper> loadMapperAnnotation(String daoClassPath)throws Exception{
         //定义返回值对象
         Map<String,Mapper> mappers = new HashMap<String, Mapper>();
 
@@ -208,7 +212,7 @@ public class XMLConfigBuilder {
             }
         }
         return mappers;
-    }*/
+    }
 
 
 
